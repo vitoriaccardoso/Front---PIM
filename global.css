@@ -1,0 +1,294 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f1ee;
+  color: #2f2f2f;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #3b2f2f;
+  color: white;
+  padding: 25px 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #f5d7b0;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar li:hover {
+  background: #6b4f3f;
+}
+
+/* CONTEÚDO */
+.content {
+  flex: 1;
+  padding: 25px;
+}
+
+.content h1 {
+  margin-bottom: 25px;
+  color: #3b2f2f;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  flex: 1;
+  min-width: 220px;
+  font-weight: bold;
+}
+
+/* FORMULÁRIOS */
+input, select {
+  padding: 12px;
+  border: 1px solid #c9b8a8;
+  border-radius: 8px;
+  margin: 8px 8px 8px 0;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #8b5e3c;
+}
+
+/* BOTÕES */
+button {
+  padding: 12px 18px;
+  background: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #6b4226;
+}
+
+/* TABELAS */
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+th {
+  background: #3b2f2f;
+  color: white;
+  padding: 14px;
+  text-align: left;
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+  background: #f7eee8;
+}
+
+/* GRÁFICO */
+.grafico-container {
+   background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+#graficoProdutos {
+  max-height: 300px;
+}
+
+/* MENSAGENS */
+#erro {
+  color: #c62828;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.sucesso {
+  color: #2e7d32;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sidebar li.ativo {
+  background: #8b5e3c;
+}
+
+.login-container {
+  width: 350px;
+  margin: auto;
+  margin-top: 150px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-container input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login-container button {
+  width: 100%;
+}
+
+/* 🔥 CENTRALIZA O TÍTULO "AÇÕES" */
+th:last-child {
+  text-align: center;
+}
+
+/* 🔥 CENTRALIZA OS BOTÕES NA COLUNA */
+td:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 🔥 NOME (esquerda) */
+th:nth-child(1),
+td:nth-child(1) {
+  text-align: left;
+}
+
+/* 🔥 CATEGORIA (esquerda) */
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: left;
+}
+
+/* 🔥 PREÇO (centro) */
+th:nth-child(3),
+td:nth-child(3) {
+  text-align: center;
+}
+
+/* 🔥 QUANTIDADE (centro) */
+th:nth-child(4),
+td:nth-child(4) {
+  text-align: center;
+}
+
+/* 🔥 AÇÕES (centro + flex) */
+th:nth-child(5) {
+  text-align: center;
+}
+
+td:nth-child(5) {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.categorias-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 450px;
+}
+
+.categoria-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.categoria-item:last-child {
+  border-bottom: none;
+}
+
+.categoria-item span {
+  font-size: 16px;
+}
+
+.categoria-item button {
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #3b2f2f;
+}
+
+.categoria-item button:hover {
+  background: #8e0000;
+}
+
+.legenda-estoque {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.item-legenda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.verde {
+  background: #4caf50;
+}
+
+.vermelho {
+  background: #e53935;
+}
