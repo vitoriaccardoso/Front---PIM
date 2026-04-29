@@ -14,7 +14,7 @@ function login() {
       nome: "Admin",
       email: "admin@email.com",
       senha: "123456",
-      nivel: "Admin"
+      nivel: "Administrador"
     };
 
     localStorage.setItem("usuarioLogado", JSON.stringify(admin));
