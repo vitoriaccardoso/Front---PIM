@@ -32,3 +32,55 @@ body {
   color: red;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sidebar li {
+    margin-bottom: 0;
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  input, select, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .grafico-container {
+    max-width: 100%;
+  }
+
+  .login-container {
+    width: 90%;
+    margin-top: 100px;
+  }
+}

@@ -15,7 +15,8 @@ body {
   min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar {
   width: 240px;
   min-height: 100vh;
@@ -35,6 +36,10 @@ body {
 }
 
 .sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   padding: 12px 15px;
   margin-bottom: 8px;
   border-radius: 8px;
@@ -42,22 +47,42 @@ body {
   transition: 0.3s;
 }
 
+.sidebar li span {
+  font-size: 20px;
+  color: #f5d7b0;
+}
+
 .sidebar li:hover {
   background: #6b4f3f;
 }
 
-/* CONTEÚDO */
+.sidebar li.ativo {
+  background: #8b5e3c;
+}
+
+/* ================= CONTEÚDO ================= */
+
 .content {
   flex: 1;
   padding: 25px;
 }
 
 .content h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   margin-bottom: 25px;
   color: #3b2f2f;
 }
 
-/* CARDS */
+.titulo-icon {
+  color: #8b5e3c;
+  font-size: 30px;
+}
+
+/* ================= CARDS ================= */
+
 .cards {
   display: flex;
   gap: 20px;
@@ -70,12 +95,20 @@ body {
   padding: 25px;
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
   flex: 1;
   min-width: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* FORMULÁRIOS */
+/* ================= FORMULÁRIOS ================= */
+
 input, select {
   padding: 12px;
   border: 1px solid #c9b8a8;
@@ -89,7 +122,28 @@ input:focus, select:focus {
   border-color: #8b5e3c;
 }
 
-/* BOTÕES */
+/* FORM BOX (cadastro, categorias, etc) */
+.form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 500px;
+  margin-bottom: 25px;
+}
+
+.form-box input,
+.form-box select {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.form-box button {
+  width: 100%;
+}
+
+/* ================= BOTÕES ================= */
+
 button {
   padding: 12px 18px;
   background: #8b5e3c;
@@ -104,7 +158,8 @@ button:hover {
   background: #6b4226;
 }
 
-/* TABELAS */
+/* ================= TABELAS ================= */
+
 table {
   width: 100%;
   background: white;
@@ -131,9 +186,10 @@ tr:hover {
   background: #f7eee8;
 }
 
-/* GRÁFICO */
+/* ================= GRÁFICO ================= */
+
 .grafico-container {
-   background: white;
+  background: white;
   padding: 25px;
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -141,128 +197,22 @@ tr:hover {
   margin: 30px auto;
 }
 
-#graficoProdutos {
-  max-height: 300px;
-}
-
-/* MENSAGENS */
-#erro {
-  color: #c62828;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.sucesso {
-  color: #2e7d32;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-.sidebar li.ativo {
-  background: #8b5e3c;
-}
-
-.login-container {
-  width: 350px;
-  margin: auto;
-  margin-top: 150px;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.login-container input {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.login-container button {
-  width: 100%;
-}
-
-/* 🔥 CENTRALIZA O TÍTULO "AÇÕES" */
-th:last-child {
-  text-align: center;
-}
-
-/* 🔥 CENTRALIZA OS BOTÕES NA COLUNA */
-td:last-child {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* 🔥 NOME (esquerda) */
-th:nth-child(1),
-td:nth-child(1) {
-  text-align: left;
-}
-
-/* 🔥 CATEGORIA (esquerda) */
-th:nth-child(2),
-td:nth-child(2) {
-  text-align: left;
-}
-
-/* 🔥 PREÇO (centro) */
-th:nth-child(3),
-td:nth-child(3) {
-  text-align: center;
-}
-
-/* 🔥 QUANTIDADE (centro) */
-th:nth-child(4),
-td:nth-child(4) {
-  text-align: center;
-}
-
-/* 🔥 AÇÕES (centro + flex) */
-th:nth-child(5) {
-  text-align: center;
-}
-
-td:nth-child(5) {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
+/* ================= CATEGORIAS ================= */
 
 .categorias-box {
   background: white;
   padding: 20px;
   border-radius: 12px;
-  margin-top: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  max-width: 450px;
+  max-width: 500px;
 }
 
-.categoria-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+.categorias-box h3 {
+  margin-bottom: 15px;
+  color: #3b2f2f;
 }
 
-.categoria-item:last-child {
-  border-bottom: none;
-}
-
-.categoria-item span {
-  font-size: 16px;
-}
-
-.categoria-item button {
-  padding: 8px 12px;
-  font-size: 13px;
-  background: #3b2f2f;
-}
-
-.categoria-item button:hover {
-  background: #8e0000;
-}
+/* ================= LEGENDA ================= */
 
 .legenda-estoque {
   display: flex;
@@ -291,4 +241,143 @@ td:nth-child(5) {
 
 .vermelho {
   background: #e53935;
+}
+
+/* ================= LOGIN ================= */
+
+.login-container {
+  width: 400px;
+  min-height: 400px;
+  margin: 150px auto 0;
+  padding: 30px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-container h1 {
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #8b5e3c;
+  margin-bottom: 25px;
+}
+
+/* INPUT COM ÍCONE */
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  height: 46px;
+}
+
+.input-box span {
+  color: #8b5e3c;
+  font-size: 22px;
+  margin-right: 8px;
+}
+
+.input-box input {
+  all: unset;
+  flex: 1;
+  height: 100%;
+  font-size: 14px;
+}
+
+/* BOTÃO LOGIN */
+.login-container button {
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* FOCO */
+.input-box:focus-within {
+  border: 2px solid #8b5e3c;
+}
+
+/* ================= MENSAGENS ================= */
+
+#erro {
+  color: #c62828;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* ARRUMAR LISTA DE CATEGORIAS */
+#listaCategorias {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#listaCategorias div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7eee8;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+#listaCategorias button {
+  padding: 8px 14px;
+  font-size: 13px;
+  margin: 0;
+}
+
+.movimentacao-box {
+   max-width: 430px;
+  margin: 70px auto; 
+}
+
+.movimentacao-box h3 {
+  color: #3b2f2f;
+  margin-bottom: 6px;
+}
+
+.descricao-form {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.movimentacao-box select,
+.movimentacao-box input {
+  margin-bottom: 12px;
+}
+
+.movimentacao-box button {
+  margin-top: 8px;
+}
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 430px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .login-container {
+    width: 90%;
+    margin-top: 80px;
+  }
 }

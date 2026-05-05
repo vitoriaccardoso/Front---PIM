@@ -10,14 +10,14 @@ function login() {
 
   // Admin padrão
   if (email === "admin@email.com" && senha === "123456") {
-    let admin = {
-      nome: "Admin",
+    let administrador = {
+      nome: "Administrador",
       email: "admin@email.com",
       senha: "123456",
-      nivel: "Admin"
+      nivel: "Administrador"
     };
 
-    localStorage.setItem("usuarioLogado", JSON.stringify(admin));
+    localStorage.setItem("usuarioLogado", JSON.stringify(administrador));
     window.location.href = "dashboard.html";
     return;
   }
