@@ -12,6 +12,7 @@ if (indexEditando !== null) {
   document.getElementById("quantidade").value = produto.quantidade;
 }
 
+/*Pronto*/
 function salvarProduto() {
   const nome = document.getElementById("nome").value.trim();
   const categoria = document.getElementById("categoria").value.trim();

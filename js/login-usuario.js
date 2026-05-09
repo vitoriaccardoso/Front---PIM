@@ -1,4 +1,4 @@
-function loginUsuario() {
+ function loginUsuario() {
 
   const usuario = document.getElementById("usuario").value.trim();
   const senha = document.getElementById("senhaUsuario").value.trim();
@@ -25,3 +25,4 @@ function loginUsuario() {
 
   window.location.href = "dashboard.html";
 }
+/*pronto*/

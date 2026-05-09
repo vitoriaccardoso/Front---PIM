@@ -19,3 +19,4 @@ function login() {
     erro.innerText = "E-mail ou senha inválidos.";
   }
 }
+/*pronto*/

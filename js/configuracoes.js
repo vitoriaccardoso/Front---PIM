@@ -1,3 +1,4 @@
+/*Pronto*/
 const empresa = JSON.parse(
   localStorage.getItem("empresaCadastrada")
 );

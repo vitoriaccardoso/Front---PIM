@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Cadastro da Empresa</title>
 
   <link rel="stylesheet" href="global.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,32 +12,49 @@
 
   <h1 class="logo">NexaFlow</h1>
 
-  <div class="login-container">
+  <div class="cadastro-container">
 
-    <h1>Bem vindo de volta!</h1>
+    <div class="cadastro-left">
+      <h2>Seja bem<br>vindo de volta!</h2>
 
-    <div class="campo">
-      <span class="material-icons">email</span>
-      <input type="email" id="email" placeholder="Digite seu e-mail">
+      <button onclick="window.location.href='login.html'" class="btn-outline">
+        Login
+      </button>
     </div>
 
-    <div class="campo">
-      <span class="material-icons">lock</span>
-      <input type="password" id="senha" placeholder="Digite sua senha">
+    <div class="cadastro-right">
+      <h1>Cadastre sua empresa</h1>
+
+      <div class="campo">
+        <span class="material-icons">business</span>
+        <input type="text" id="empresa" placeholder="Empresa">
+      </div>
+
+      <div class="campo">
+        <span class="material-icons">email</span>
+        <input type="email" id="email" placeholder="E-mail">
+      </div>
+
+      <div class="campo">
+        <span class="material-icons">lock</span>
+        <input type="password" id="senha" placeholder="Senha">
+      </div>
+
+      <div class="campo">
+        <span class="material-icons">lock</span>
+        <input type="password" id="confirmarSenha" placeholder="Confirme sua senha">
+      </div>
+
+      <p id="erro"></p>
+
+      <button onclick="cadastrarEmpresa()" class="btn-principal">
+        Cadastrar
+      </button>
     </div>
-
-   
-    <p class="esqueceu">Esqueceu sua senha?</p>
-
-    <p id="erro"></p>
-
-    <button onclick="login()" class="btn-principal">
-      Entrar
-    </button>
 
   </div>
 
-  <script src="js/index.js"></script>
-
+  <script src="js/cadastro.js"></script>
 </body>
 </html>
+<!-- pronto -->

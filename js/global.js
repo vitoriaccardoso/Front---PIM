@@ -52,3 +52,4 @@ function bloquearPagina() {
 
 aplicarPermissoes();
 bloquearPagina();
+/*pronto*/

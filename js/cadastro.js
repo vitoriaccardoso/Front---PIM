@@ -27,5 +27,6 @@ function cadastrarEmpresa() {
   localStorage.setItem("nomeComercio", empresa);
 
   alert("Empresa cadastrada com sucesso!");
-  window.location.href = "index.html";
+  window.location.href = "login.html";
 }
+/*pronto*/

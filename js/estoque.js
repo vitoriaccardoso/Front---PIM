@@ -1,3 +1,4 @@
+/*Pronto*/
 let produtos = JSON.parse(localStorage.getItem("produtos")) || [
   {
     nome: "Café",

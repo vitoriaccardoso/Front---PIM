@@ -1,3 +1,4 @@
+/*Pronto*/
 const vendas = JSON.parse(localStorage.getItem("vendas")) || [];
 const movimentacoes = JSON.parse(localStorage.getItem("movimentacoes")) || [];
 
