@@ -1,69 +1,59 @@
-let indexEdicao = localStorage.getItem("editarIndex");
+const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
 
-if (indexEdicao !== null) {
-  let lista = JSON.parse(localStorage.getItem("produtos")) || [];
-  let produto = lista[indexEdicao];
+const indexEditando = localStorage.getItem("produtoEditando");
+
+if (indexEditando !== null) {
+  const produto = produtos[indexEditando];
 
   document.getElementById("nome").value = produto.nome;
   document.getElementById("categoria").value = produto.categoria;
-  document.getElementById("preco").value = produto.preco;
+  document.getElementById("codigo").value = produto.codigo;
+  document.getElementById("valor").value = produto.valor;
   document.getElementById("quantidade").value = produto.quantidade;
-  document.getElementById("fornecedor").value = produto.fornecedor;
 }
 
-function ir(pagina) {
-  window.location.href = pagina;
-}
+function salvarProduto() {
+  const nome = document.getElementById("nome").value.trim();
+  const categoria = document.getElementById("categoria").value.trim();
+  const codigo = document.getElementById("codigo").value.trim();
+  const valor = document.getElementById("valor").value.trim();
+  const quantidade = document.getElementById("quantidade").value.trim();
+  const erro = document.getElementById("erro");
 
-function carregarCategorias() {
-  let select = document.getElementById("categoria");
-  let categorias = JSON.parse(localStorage.getItem("categorias")) || [];
+  erro.innerText = "";
 
-  select.innerHTML = "<option value=''>Selecione uma categoria</option>";
-
-  categorias.forEach(cat => {
-    select.innerHTML += `<option value="${cat}">${cat}</option>`;
-  });
-}
-
-function salvar() {
-  let nome = document.getElementById("nome").value;
-  let categoria = document.getElementById("categoria").value;
-  let preco = document.getElementById("preco").value;
-  let quantidade = document.getElementById("quantidade").value;
-  let fornecedor = document.getElementById("fornecedor").value;
-  let erro = document.getElementById("erro");
-
-  if (!nome || !categoria || !preco || !quantidade || !fornecedor) {
-    erro.innerText = "Preencha todos os campos";
+  if (!nome || !categoria || !codigo || !valor || !quantidade) {
+    erro.innerText = "Preencha todos os campos.";
     return;
   }
 
-  if (preco < 0) {
-    erro.innerText = "Preço inválido";
-    return;
-  }
-
-  let produto = {
+  const novoProduto = {
     nome,
     categoria,
-    preco,
-    quantidade,
-    fornecedor
+    codigo,
+    valor,
+    quantidade: Number(quantidade)
   };
 
-  let lista = JSON.parse(localStorage.getItem("produtos")) || [];
-    if (indexEdicao !== null) {
-  lista[indexEdicao] = produto;
-  localStorage.removeItem("editarIndex");
-} else {
-  lista.push(produto);
+  if (indexEditando !== null) {
+    produtos[indexEditando] = novoProduto;
+    localStorage.removeItem("produtoEditando");
+  } else {
+    produtos.push(novoProduto);
+
+    const movimentacoes = JSON.parse(localStorage.getItem("movimentacoes")) || [];
+
+    movimentacoes.push({
+      tipo: "entrada",
+      produto: nome,
+      quantidade: Number(quantidade),
+      data: new Date().toLocaleDateString("pt-BR")
+    });
+
+    localStorage.setItem("movimentacoes", JSON.stringify(movimentacoes));
+  }
+
+  localStorage.setItem("produtos", JSON.stringify(produtos));
+
+  window.location.href = "estoque.html";
 }
-  localStorage.setItem("produtos", JSON.stringify(lista));
-
-  alert("Produto cadastrado com sucesso!");
-
-  window.location.href = "produtos.html";
-}
-
-carregarCategorias();

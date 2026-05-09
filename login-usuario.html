@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Usuário</title>
+
+  <link rel="stylesheet" href="global.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="logo">NexaFlow</h1>
+
+  <div class="login-container">
+
+    <h1>Acesso do Usuário</h1>
+
+    <div class="campo">
+      <span class="material-icons">person</span>
+      <input type="text" id="usuario" placeholder="Usuário">
+    </div>
+
+    <div class="campo">
+      <span class="material-icons">lock</span>
+      <input type="password" id="senhaUsuario" placeholder="Senha">
+    </div>
+
+    <div class="campo">
+      <span class="material-icons">badge</span>
+
+      <select id="perfil">
+        <option value="">Selecione o perfil</option>
+        <option value="admin">Administrador</option>
+        <option value="gerente">Gerente</option>
+        <option value="funcionario">Funcionário</option>
+      </select>
+    </div>
+
+    <p id="erro"></p>
+
+    <button onclick="loginUsuario()" class="btn-principal">
+      Entrar
+    </button>
+
+  </div>
+
+<script src="js/login-usuario.js"></script>
+
+</body>
+</html>

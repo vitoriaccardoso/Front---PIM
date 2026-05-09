@@ -1,41 +1,52 @@
-function ir(pagina) {
-  window.location.href = pagina;
-}
+const vendas = JSON.parse(localStorage.getItem("vendas")) || [];
 
-// pega histórico do localStorage
-let historico = JSON.parse(localStorage.getItem("historico")) || [];
+function carregarRelatorios() {
+  const totalVendido = vendas.reduce((total, venda) => {
+    return total + Number(venda.total);
+  }, 0);
 
-// função de filtro
-function filtrarRelatorio() {
-  let inicio = document.getElementById("dataInicio").value;
-  let fim = document.getElementById("dataFim").value;
+  const qtdVendida = vendas.reduce((total, venda) => {
+    return total + Number(venda.quantidade);
+  }, 0);
 
-  let tabela = document.getElementById("tabela-relatorio");
-  tabela.innerHTML = "";
+  const pagamentos = {};
 
-  let filtrados = historico.filter(h => {
-    // transforma "28/04/2026, 21:30:10" em "2026-04-28"
-    let dataTexto = h.data.split(",")[0];
-    let partes = dataTexto.split("/");
-    let dataFormatada = `${partes[2]}-${partes[1]}-${partes[0]}`;
-
-    return (!inicio || dataFormatada >= inicio) &&
-           (!fim || dataFormatada <= fim);
+  vendas.forEach(venda => {
+    pagamentos[venda.pagamento] = (pagamentos[venda.pagamento] || 0) + 1;
   });
 
-  if (filtrados.length === 0) {
-    tabela.innerHTML = "<tr><td colspan='4'>Nenhum resultado encontrado</td></tr>";
-    return;
+  let pagamentoMaisUsado = "-";
+  let maior = 0;
+
+  for (let forma in pagamentos) {
+    if (pagamentos[forma] > maior) {
+      maior = pagamentos[forma];
+      pagamentoMaisUsado = forma;
+    }
   }
 
-  filtrados.forEach(h => {
+  document.getElementById("totalVendido").innerText =
+    "R$ " + totalVendido.toFixed(2);
+
+  document.getElementById("qtdVendida").innerText = qtdVendida;
+
+  document.getElementById("pagamentoMaisUsado").innerText = pagamentoMaisUsado;
+
+  const tabela = document.getElementById("tabelaRelatorios");
+  tabela.innerHTML = "";
+
+  vendas.forEach((venda, index) => {
     tabela.innerHTML += `
       <tr>
-        <td>${h.data}</td>
-        <td>${h.produto}</td>
-        <td>${h.tipo}</td>
-        <td>${h.quantidade}</td>
+        <td>#${index + 1}</td>
+        <td>${venda.produto}</td>
+        <td>${venda.data}</td>
+        <td>R$ ${venda.total}</td>
+        <td>${venda.pagamento}</td>
+        <td>${venda.quantidade}</td>
       </tr>
     `;
   });
 }
+
+carregarRelatorios();

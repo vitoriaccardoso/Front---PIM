@@ -1,81 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastrar Produto</title>
-  <link rel="stylesheet" href="global.css">
 
-  <!-- Ícones -->
+  <link rel="stylesheet" href="global.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
 
-  <!-- SIDEBAR COMPLETA -->
   <div class="sidebar">
-    <h2>Sistema</h2>
-    <ul>
-      <li onclick="ir('dashboard.html')">
-        <span class="material-icons">home</span> Dashboard
-      </li>
+    <h2 id="nomeComercio">NexaFlow</h2>
 
-      <li onclick="ir('produtos.html')">
-        <span class="material-icons">inventory_2</span> Produtos
-      </li>
+ <ul>
 
-      <li onclick="ir('movimentacao.html')">
-        <span class="material-icons">sync_alt</span> Movimentação
-      </li>
+  <li class="somente-admin-gerente" onclick="ir('dashboard.html')">
+    <span class="material-icons">dashboard</span>
+    Dashboard
+  </li>
 
-      <li onclick="ir('historico.html')">
-        <span class="material-icons">history</span> Histórico
-      </li>
+  <li class="ativo" onclick="ir('estoque.html')">
+    <span class="material-icons">inventory_2</span>
+    Estoque
+  </li>
 
-      <li onclick="ir('relatorios.html')">
-        <span class="material-icons">bar_chart</span> Relatórios
-      </li>
+  <li onclick="ir('vendas.html')">
+    <span class="material-icons">point_of_sale</span>
+    Vendas
+  </li>
 
-      <li onclick="ir('usuarios.html')">
-        <span class="material-icons">group</span> Usuários
-      </li>
+  <li class="somente-admin-gerente" onclick="ir('relatorios.html')">
+    <span class="material-icons">bar_chart</span>
+    Relatórios
+  </li>
 
-      <li onclick="ir('categorias.html')">
-        <span class="material-icons">category</span> Categorias
-      </li>
+  <li onclick="logout()">
+    <span class="material-icons">logout</span>
+    Sair
+  </li>
 
-      <li onclick="ir('fornecedores.html')">
-        <span class="material-icons">local_shipping</span> Fornecedores
-      </li>
-
-      <li onclick="logout()">
-        <span class="material-icons">logout</span> Sair
-      </li>
-    </ul>
+</ul>
   </div>
 
-  <!-- CONTEÚDO -->
   <div class="content">
+    <h1>Cadastrar Produto</h1>
 
-    <h1>
-      <span class="material-icons titulo-icon">add_box</span>
-      Cadastrar Produto
-    </h1>
-
-    <div class="form-box">
-
+    <div class="produto-form">
       <input type="text" id="nome" placeholder="Nome do produto">
-      <select id="categoria"></select>
-      <input type="number" id="preco" placeholder="Preço">
+      <input type="text" id="categoria" placeholder="Categoria">
+      <input type="text" id="codigo" placeholder="Código">
+      <input type="number" id="valor" placeholder="Valor">
       <input type="number" id="quantidade" placeholder="Quantidade">
-      <input type="text" id="fornecedor" placeholder="Fornecedor">
 
       <p id="erro"></p>
 
-      <button onclick="salvar()">Salvar</button>
-
+      <button onclick="salvarProduto()">Salvar Produto</button>
     </div>
-
   </div>
 
 </div>
@@ -87,10 +70,12 @@
 
   function logout() {
     localStorage.removeItem("usuarioLogado");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
   }
 </script>
 
-<script src="./js/cadastro-produto.js"></script>
+<script src="js/global.js"></script>
+<script src="js/cadastro-produto.js"></script>
+
 </body>
 </html>

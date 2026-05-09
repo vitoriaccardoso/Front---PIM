@@ -1,66 +1,39 @@
-let produtos = JSON.parse(localStorage.getItem("produtos")) || [];
-let historico = JSON.parse(localStorage.getItem("historico")) || [];
+const vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+const movimentacoes = JSON.parse(localStorage.getItem("movimentacoes")) || [];
 
-// TOTAL EM ESTOQUE
-let totalItens = produtos.reduce((total, p) => total + Number(p.quantidade), 0);
+/* ================= MAIS VENDIDOS ================= */
 
-document.getElementById("total").innerText =
-  "Total em estoque: " + totalItens;
+let vendidos = {};
 
-// ESTOQUE BAIXO
-let baixo = produtos.filter(p => p.quantidade < 10);
+vendas.forEach(venda => {
+  if (!vendidos[venda.produto]) {
+    vendidos[venda.produto] = 0;
+  }
 
-document.getElementById("baixo").innerText =
-  "Estoque Baixo: " + baixo.length;
-
-// PRODUTO MAIS MOVIMENTADO
-let contagem = {};
-
-historico.forEach(h => {
-  contagem[h.produto] = (contagem[h.produto] || 0) + h.quantidade;
+  vendidos[venda.produto] += Number(venda.quantidade);
 });
 
-let mais = "";
-let maior = 0;
+const nomesProdutos = Object.keys(vendidos);
+const qtdVendidos = Object.values(vendidos);
 
-for (let produto in contagem) {
-  if (contagem[produto] > maior) {
-    maior = contagem[produto];
-    mais = produto;
-  }
-}
+const ctx2 = document.getElementById("graficoMaisVendidos");
 
-document.getElementById("mais").innerText =
-  mais ? "Mais movimentado: " + mais : "Sem movimentações";
-
-// DADOS DOS PRODUTOS
-let nomes = produtos.map(p => p.nome);
-let quantidades = produtos.map(p => p.quantidade);
-
-// 🔥 CORES (vermelho = baixo / verde = ok)
-let cores = quantidades.map(q => 
-  q < 10 ? "#e53935" : "#4caf50"
-);
-
-// CRIAR GRÁFICO
-let ctx = document.getElementById("graficoProdutos").getContext("2d");
-
-new Chart(ctx, {
+new Chart(ctx2, {
   type: "bar",
+
   data: {
-    labels: nomes,
+    labels: nomesProdutos,
     datasets: [{
-      label: "", // 🔥 removido
-      data: quantidades,
-      backgroundColor: cores,
-      borderWidth: 1
+      data: qtdVendidos,
+      backgroundColor: "#0f5b7f"
     }]
   },
+
   options: {
     responsive: true,
     plugins: {
       legend: {
-        display: false 
+        display: false
       }
     },
     scales: {
@@ -70,3 +43,96 @@ new Chart(ctx, {
     }
   }
 });
+
+/* ================= ENTRADA X SAÍDA REAL ================= */
+
+const meses = [
+  "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+  "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+];
+
+const entradas = Array(12).fill(0);
+const saidas = Array(12).fill(0);
+
+movimentacoes.forEach(mov => {
+  const partesData = mov.data.split("/");
+  const mes = Number(partesData[1]) - 1;
+
+  if (mov.tipo === "entrada") {
+    entradas[mes] += Number(mov.quantidade);
+  }
+
+  if (mov.tipo === "saida") {
+    saidas[mes] += Number(mov.quantidade);
+  }
+});
+
+const ctx = document.getElementById("graficoEntradaSaida");
+
+const graficoEntradaSaida = new Chart(ctx, {
+  type: "line",
+
+  data: {
+    labels: meses,
+
+    datasets: [
+      {
+        label: "Entrada",
+        data: entradas,
+        borderColor: "#22c55e",
+        backgroundColor: "transparent",
+        tension: 0.4
+      },
+
+      {
+        label: "Saída",
+        data: saidas,
+        borderColor: "#ef4444",
+        backgroundColor: "transparent",
+        tension: 0.4
+      }
+    ]
+  },
+
+  options: {
+    responsive: true,
+
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+/* ================= FILTRO ================= */
+
+function filtrarDashboard() {
+  const mes = document.getElementById("filtroMes").value;
+
+  if (mes === "") {
+    graficoEntradaSaida.data.labels = meses;
+    graficoEntradaSaida.data.datasets[0].data = entradas;
+    graficoEntradaSaida.data.datasets[1].data = saidas;
+  } else {
+    const index = meses.indexOf(mes);
+
+    graficoEntradaSaida.data.labels = [mes];
+
+    graficoEntradaSaida.data.datasets[0].data = [
+      entradas[index]
+    ];
+
+    graficoEntradaSaida.data.datasets[1].data = [
+      saidas[index]
+    ];
+  }
+
+  graficoEntradaSaida.update();
+}
